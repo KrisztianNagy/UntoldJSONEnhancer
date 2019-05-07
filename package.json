@@ -1,0 +1,38 @@
+{
+    "name": "untold-json-enhancer",
+    "description": "",
+    "main": "dist/index.js",
+    "types": "dist/src/index.d.ts",
+    "scripts": {
+        "build": "webpack --mode production",
+        "build:types": "tsc --emitDeclarationOnly",
+        "test": "webpack-dev-server --config webpack.config.browser.js --open \"Chrome\" "
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.4.4",
+        "@babel/preset-typescript": "^7.3.3",
+        "@types/chai": "^4.1.7",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^11.13.10",
+        "@types/pegjs": "^0.10.1",
+        "babel-loader": "^8.0.5",
+        "chai": "^4.2.0",
+        "copy-webpack-plugin": "^5.0.3",
+        "mocha": "^6.1.4",
+        "pegjs-loader": "^0.5.4",
+        "source-map-loader": "^0.2.4",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^3.4.5",
+        "webpack": "^4.30.0",
+        "webpack-cli": "^3.3.2",
+        "webpack-dev-server": "^3.2.1",
+        "webpack-node-externals": "^1.7.2"
+    },
+    "dependencies": {
+        "@types/lodash": "^4.14.123",
+        "jsep": "^0.3.4",
+        "untold-json-pointer": "1.1.0"
+    }
+}
