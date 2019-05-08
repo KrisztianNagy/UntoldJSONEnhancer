@@ -4,13 +4,17 @@ The JSON Enhancer was created to add calculated fields into an existing JSON obj
 
 ## Installing
 
-The library is currently WIP.
+Install with npm
+
+```
+npm install untold-json-enhancer --save
+```
 
 ## Usage
 
 For the purpose of this example we will write queries for the [Character](test/data/character.ts) JSON object.
 
-## Setting up the enhancer
+### Setting up the enhancer
 
 First, import the json enhancer library.
 
@@ -32,7 +36,7 @@ Next, you should create a new instance from the JSON Enhancer:
 const enhancer = new JSONEnhancer();
 ```
 
-## Creating a schema
+### Creating a schema
 
 A schema represents a group of enhancements which will be applied at once on an object.
 
@@ -48,7 +52,7 @@ enhancer.enhance(character, 'Character');
 
 If we execute this code we will realize that it does nothing because our schema is empty.
 
-## Creating a static rule
+### Creating a static rule
 
 Rules can be added with the _addRuleToSchema_ method. It expects 3 parameters:
 
@@ -74,11 +78,11 @@ console.log(character.weapon.name); // "stick"
 console.log(character.weapon.price); // 16
 ```
 
-## Using rule scoped variables to calculate value based on context
+### Using rule scoped variables to calculate value based on context
 
 There are 3 variables available for you in the value expression.
 
-### item
+#### item
 
 The _item_ points to the original object. It is useful when you want to use absolute path to navigate.
 
@@ -95,7 +99,7 @@ console.log(character.name); // "Conan"
 console.log(character.weapon.name); // "Conan"
 ```
 
-### target
+#### target
 
 The _target_ points to property what we are planning to update.
 
@@ -110,7 +114,7 @@ enhancer.enhance(character, 'Character');
 console.log(character.weapon.name); // "sword2"
 ```
 
-### parent
+#### parent
 
 The _parent_ object has 2 properties:
 
@@ -132,7 +136,7 @@ console.log(character.name); // "Conan"
 console.log(character.weapon.name); // "Conan"
 ```
 
-## Adding your own context variables
+### Adding your own context variables
 
 You can add context variables globaly or only into the schema.
 
@@ -152,7 +156,7 @@ console.log(character.name); // "Global Schema"
 
 Please keep in mind that in case of duplicate variable names, the more specific always wins.
 
-## Adding helper methods and using pipes
+### Adding helper methods and using pipes
 
 You can inject anything into the scope and use them.
 
@@ -171,7 +175,7 @@ Also if the function only takes one parameter you can use the pipe shorthand.
 enhancer.addRuleToSchema('Character', '.weapon.price', '2.4 | Math.floor');
 ```
 
-## Nested schema
+### Nested schema
 
 You can also create schemas for common parts in other schemas to avoid redundancy.
 
@@ -194,3 +198,40 @@ console.log(characterCopy.items[3].sumWeight)); // 0.5
 ```
 
 It is important to notice that we applied our nested schema to an array and that's why the enhancer applied the schema to every single element.
+
+## Built With
+
+-   [TypeScript](https://www.typescriptlang.org/) - The language being used
+-   [Untold JSON Pointer](https://github.com/KrisztianNagy/UntoldJSONPointer) - Library to get references in an object.
+-   [JSEP](https://github.com/soney/jsep) - Expression parser library
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as
+appropriate.
+
+Building the application:
+
+```
+npm run build
+```
+
+Generating types for TypeScript:
+
+```
+npm run build:types
+```
+
+Executing tests in chrome:
+
+```
+npm run test
+```
+
+## Authors
+
+-   **Krisztian Nagy** - [LinkedIn](https://www.linkedin.com/in/krisztian-nagy-1523a231/)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
