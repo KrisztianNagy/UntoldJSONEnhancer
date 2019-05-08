@@ -8,7 +8,7 @@ module.exports = {
     output: {
         filename: 'index.js',
         libraryTarget: 'umd',
-        library: 'JSONPointer',
+        library: 'JSONEnhancer',
         libraryExport: 'default',
         umdNamedDefine: true,
         globalObject: `(typeof self !== 'undefined' ? self : this)`,
