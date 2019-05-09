@@ -1,38 +1,46 @@
 import { expect } from 'chai';
-import { ExpressionEvaluator } from '../src/expressions/expression-evaluator';
+import JSONEnhancer from '../src';
 
 describe('Expression Functions', () => {
     it('should be able handle pipe', () => {
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
+
         const scope = { Math: Math };
-        const expressionEvaluator = new ExpressionEvaluator({ scope: scope });
-        const result = expressionEvaluator.evaluate(' 1.4 | Math.floor');
+        const result = expressionEvaluator.evaluate(' 1.4 | Math.floor', { scope: scope });
 
         expect(result.error).to.eq(false);
         expect(result.value).to.eq(1);
     });
 
     it('should be able handle function with 0 parameters', () => {
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
+
         const scope = { Math: Math };
-        const expressionEvaluator = new ExpressionEvaluator({ scope: scope });
-        const result = expressionEvaluator.evaluate('Math.PI');
+        const result = expressionEvaluator.evaluate('Math.PI', { scope: scope });
 
         expect(result.error).to.eq(false);
         expect(result.value).to.eq(3.141592653589793);
     });
 
     it('should be able handle function with 1 parameter', () => {
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
+
         const scope = { Math: Math };
-        const expressionEvaluator = new ExpressionEvaluator({ scope: scope });
-        const result = expressionEvaluator.evaluate('Math.floor(1.4)');
+        const result = expressionEvaluator.evaluate('Math.floor(1.4)', { scope: scope });
 
         expect(result.error).to.eq(false);
         expect(result.value).to.eq(1);
     });
 
     it('should be able handle function with 2 parameters', () => {
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
+
         const scope = { Math: Math };
-        const expressionEvaluator = new ExpressionEvaluator({ scope: scope });
-        const result = expressionEvaluator.evaluate('Math.pow(2, 3)');
+        const result = expressionEvaluator.evaluate('Math.pow(2, 3)', { scope: scope });
 
         expect(result.error).to.eq(false);
         expect(result.value).to.eq(8);

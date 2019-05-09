@@ -1,7 +1,8 @@
+import { ExpressionEvaluator } from './expressions/expression-evaluator';
 import { JSONRule } from './models/json-rule';
 export default class JSONEnhancer {
     private schemas;
-    private evaluator;
+    evaluator: ExpressionEvaluator;
     private pointer;
     private scope;
     constructor();

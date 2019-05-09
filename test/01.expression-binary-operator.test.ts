@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import JSONEnhancer from '../src';
-import { ExpressionEvaluator } from '../src/expressions/expression-evaluator';
 
 describe('Expression Binary Operators', () => {
     it('should parse number addition', () => {
-        const expressionEvaluator = new ExpressionEvaluator();
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
+
         const result = expressionEvaluator.evaluate('1 + 2');
 
         expect(result.error).to.eq(false);
@@ -12,7 +13,8 @@ describe('Expression Binary Operators', () => {
     });
 
     it('should parse number substraction', () => {
-        const expressionEvaluator = new ExpressionEvaluator();
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
         const result = expressionEvaluator.evaluate('1 - 2');
 
         expect(result.error).to.eq(false);
@@ -20,7 +22,8 @@ describe('Expression Binary Operators', () => {
     });
 
     it('should parse multiplication', () => {
-        const expressionEvaluator = new ExpressionEvaluator();
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
         const result = expressionEvaluator.evaluate('1 * 2');
 
         expect(result.error).to.eq(false);
@@ -28,7 +31,8 @@ describe('Expression Binary Operators', () => {
     });
 
     it('should parse division', () => {
-        const expressionEvaluator = new ExpressionEvaluator();
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
         const result = expressionEvaluator.evaluate('1 / 2');
 
         expect(result.error).to.eq(false);
@@ -36,7 +40,8 @@ describe('Expression Binary Operators', () => {
     });
 
     it('should parse modulo', () => {
-        const expressionEvaluator = new ExpressionEvaluator();
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
         const result = expressionEvaluator.evaluate('1 % 2');
 
         expect(result.error).to.eq(false);
@@ -44,7 +49,8 @@ describe('Expression Binary Operators', () => {
     });
 
     it('should parse string concatenation', () => {
-        const expressionEvaluator = new ExpressionEvaluator();
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
         const result = expressionEvaluator.evaluate('"con" + "catenate"');
 
         expect(result.error).to.eq(false);

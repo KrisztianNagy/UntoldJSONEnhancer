@@ -1,11 +1,12 @@
 import { expect } from 'chai';
-import { ExpressionEvaluator } from '../src/expressions/expression-evaluator';
+import JSONEnhancer from '../src';
 
 describe('Expression Identifiers', () => {
     it('should be able to resolve member', () => {
+        const enhancer = new JSONEnhancer();
+        const expressionEvaluator = enhancer.evaluator;
         const scope = { engine: { horsepower: 90 } };
-        const expressionEvaluator = new ExpressionEvaluator({ scope: scope });
-        const result = expressionEvaluator.evaluate('engine.horsepower');
+        const result = expressionEvaluator.evaluate('engine.horsepower', { scope: scope });
 
         expect(result.error).to.eq(false);
         expect(result.value).to.eq(90);

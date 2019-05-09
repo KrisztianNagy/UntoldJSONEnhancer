@@ -2,11 +2,10 @@ import JSONPointer from 'untold-json-pointer';
 import { JSONSchema } from './models/json-schema';
 import { ExpressionEvaluator } from './expressions/expression-evaluator';
 import { JSONRule } from './models/json-rule';
-import { isArray } from 'util';
 
 export default class JSONEnhancer {
     private schemas: JSONSchema[];
-    private evaluator: ExpressionEvaluator;
+    public evaluator: ExpressionEvaluator;
     private pointer: JSONPointer;
     private scope: any;
 
