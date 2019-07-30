@@ -24,4 +24,19 @@ describe('Enhancer Nested templates', () => {
         expect(characterCopy.items[2].sumWeight).to.eq(2);
         expect(characterCopy.items[3].sumWeight).to.eq(0.5);
     });
+
+    it('should be able to use nested templates with space in property name', () => {
+        const enhancer = new JSONEnhancer();
+        enhancer.setSchema('Character');
+        enhancer.setSchema('Ability');
+        enhancer.addRuleToSchema('Ability', '.Score', "parent.value['Base Score'] + parent.value['Permanent Bonus'] + parent.value['Temporary Bonus']");
+        enhancer.addRuleToSchema('Ability', '."Permanent Score"', '1 + 1');
+
+        enhancer.addSchemaToSchema('Character', '.strength', 'Ability');
+
+        enhancer.enhance(characterCopy, 'Character');
+
+        expect(characterCopy.strength.Score).to.eq(42);
+        expect(characterCopy.strength['Permanent Score']).to.eq(2);
+    });
 });

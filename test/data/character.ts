@@ -52,7 +52,16 @@ const character = {
             quantity: 1,
             equipped: null
         }
-    ]
+    ],
+    strength: {
+        'Base Score': 13,
+        'Permanent Bonus': 23,
+        'Temporary Bonus': 6,
+        'Permanent Score': ' ',
+        Score: 0,
+        'Temporary Modifier': '',
+        Modifier: ''
+    }
 };
 
 export default character;
