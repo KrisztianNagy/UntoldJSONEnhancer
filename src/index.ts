@@ -132,7 +132,7 @@ export default class JSONEnhancer {
 
     private enhanceRules(object: any, targetSchema: JSONSchema) {
         const currentScope: any = {
-            item: object
+            $current: object
         };
 
         targetSchema.rules.forEach(rule => {
@@ -147,11 +147,11 @@ export default class JSONEnhancer {
                         let parent = targetScope;
 
                         parentHierarchy.forEach(item => {
-                            parent.parent = {
+                            parent.$parent = {
                                 value: item
                             };
 
-                            parent = parent.parent;
+                            parent = parent.$parent;
                         });
 
                         const scope = { ...this.scope, ...targetSchema.scope, ...currentScope, ...targetScope };

@@ -49,5 +49,14 @@ declare const character: {
         description?: undefined;
         liquids?: undefined;
     })[];
+    strength: {
+        'Base Score': number;
+        'Permanent Bonus': number;
+        'Temporary Bonus': number;
+        'Permanent Score': string;
+        Score: number;
+        'Temporary Modifier': string;
+        Modifier: string;
+    };
 };
 export default character;

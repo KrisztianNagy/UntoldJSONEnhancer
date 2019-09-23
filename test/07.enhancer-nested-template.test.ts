@@ -13,7 +13,7 @@ describe('Enhancer Nested templates', () => {
         const enhancer = new JSONEnhancer();
         enhancer.setSchema('Character');
         enhancer.setSchema('Item');
-        enhancer.addRuleToSchema('Item', '.sumWeight', 'parent.value.weight * parent.value.quantity');
+        enhancer.addRuleToSchema('Item', '.sumWeight', '$parent.value.weight * $parent.value.quantity');
 
         enhancer.addSchemaToSchema('Character', '.items', 'Item');
 
@@ -29,7 +29,7 @@ describe('Enhancer Nested templates', () => {
         const enhancer = new JSONEnhancer();
         enhancer.setSchema('Character');
         enhancer.setSchema('Ability');
-        enhancer.addRuleToSchema('Ability', '.Score', "parent.value['Base Score'] + parent.value['Permanent Bonus'] + parent.value['Temporary Bonus']");
+        enhancer.addRuleToSchema('Ability', '.Score', "$parent.value['Base Score'] + $parent.value['Permanent Bonus'] + $parent.value['Temporary Bonus']");
         enhancer.addRuleToSchema('Ability', '."Permanent Score"', '1 + 1');
 
         enhancer.addSchemaToSchema('Character', '.strength', 'Ability');

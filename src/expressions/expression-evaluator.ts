@@ -1,5 +1,15 @@
 import * as jsep from 'jsep';
-import { IExpression, IBinaryExpression, IMemberExpression, ICallExpression, IConditionalExpression, IUnaryExpression, IIdentifier } from '../models/jsep';
+import {
+    IExpression,
+    IBinaryExpression,
+    IMemberExpression,
+    ICallExpression,
+    IConditionalExpression,
+    IUnaryExpression,
+    IIdentifier,
+    ICompoundExpression,
+    IArrayExpression
+} from '../models/jsep';
 import { ExpressionResult } from '../models/expression-result';
 import { ExpressionOperators } from './expression-operators';
 import { PointerEvaluator } from './pointer-evaluator';
@@ -71,12 +81,16 @@ export class ExpressionEvaluator {
                 return this.resolveBinaryExpression(<IBinaryExpression>node, state);
             case 'UnaryExpression':
                 return this.resolveUnaryExpression(<IUnaryExpression>node, state);
+            case 'ArrayExpression':
+                return this.resolveArrayExpression(<IArrayExpression>node, state);
             case 'MemberExpression':
                 return this.resolveMemberExpression(<IMemberExpression>node, state);
             case 'CallExpression':
                 return this.resolveCallExpression(<ICallExpression>node, state);
             case 'ConditionalExpression':
                 return this.resolveConditionalExpression(<IConditionalExpression>node, state);
+            case 'Compound':
+                return this.resolveCompoundExpression(<ICompoundExpression>node, state);
             default:
                 throw new Error('Could not resolve: ' + node.type);
         }
@@ -145,6 +159,15 @@ export class ExpressionEvaluator {
         return this.processNode(conditionaExpression.test, state) ? conditionaExpression.consequent : conditionaExpression.alternate;
     }
 
+    private resolveCompoundExpression(compoundExpression: ICompoundExpression, state: ExpressionProcessingState): any {
+        let chainState = state;
+        compoundExpression.body.forEach(item => {
+            chainState = this.processNode(item, chainState);
+        });
+
+        return chainState;
+    }
+
     private resolveIdentifier(identifier: IIdentifier, state: ExpressionProcessingState) {
         const started = !state.startedQueryConcatenation;
 
@@ -154,6 +177,10 @@ export class ExpressionEvaluator {
         }
 
         return identifier.name;
+    }
+
+    private resolveArrayExpression(arrayExpression: IArrayExpression, state: any) {
+        return arrayExpression.elements && state ? state[arrayExpression.elements[0].value] : null;
     }
 
     private resolveMemberExpression(memberExpression: IMemberExpression, state: ExpressionProcessingState) {

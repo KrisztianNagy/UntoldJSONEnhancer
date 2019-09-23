@@ -32,7 +32,7 @@ describe('Enhancer Template', () => {
     it('should be able to use the item', () => {
         const enhancer = new JSONEnhancer();
         enhancer.setSchema('Character');
-        enhancer.addRuleToSchema('Character', '.weapon.name', 'item.name + "2"');
+        enhancer.addRuleToSchema('Character', '.weapon.name', '$current.name + "2"');
 
         enhancer.enhance(characterCopy, 'Character');
 
@@ -63,7 +63,7 @@ describe('Enhancer Template', () => {
     it('should be able to use the parent', () => {
         const enhancer = new JSONEnhancer();
         enhancer.setSchema('Character');
-        enhancer.addRuleToSchema('Character', '.weapon.name', 'parent.value.price');
+        enhancer.addRuleToSchema('Character', '.weapon.name', '$parent.value.price');
 
         enhancer.enhance(characterCopy, 'Character');
 
@@ -73,7 +73,7 @@ describe('Enhancer Template', () => {
     it('should be able to use the parent of parent', () => {
         const enhancer = new JSONEnhancer();
         enhancer.setSchema('Character');
-        enhancer.addRuleToSchema('Character', '.weapon.name', 'parent.parent.value.name');
+        enhancer.addRuleToSchema('Character', '.weapon.name', '$parent.$parent.value.name');
 
         enhancer.enhance(characterCopy, 'Character');
 

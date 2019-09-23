@@ -12,7 +12,9 @@ export declare class ExpressionEvaluator {
     private resolveBinaryExpression;
     private resolveUnaryExpression;
     private resolveConditionalExpression;
+    private resolveCompoundExpression;
     private resolveIdentifier;
+    private resolveArrayExpression;
     private resolveMemberExpression;
     private resolveCallExpression;
     private resolvePipeExpression;

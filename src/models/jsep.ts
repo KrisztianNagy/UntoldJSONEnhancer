@@ -47,3 +47,12 @@ export interface IConditionalExpression extends IExpression {
     consequent: IExpression;
     alternate: IExpression;
 }
+export interface ICompoundExpression extends IExpression {
+    type: 'Compound';
+    body: Array<IExpression>;
+}
+
+export interface IArrayExpression extends IExpression {
+    type: 'ArrayExpression';
+    elements: Array<ILiteral>;
+}
